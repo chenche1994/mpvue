@@ -1,4 +1,12 @@
 const CONF = {
+    severHost: 'localhost',
+    tunnelServerUrl: '',
+    tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
+    qcloudAppId: '1256828109',
+    qcloudSecretId: 'AKIDa5PkAR1P5aw67wPVIuKZcXJtHg0G3RHy',
+    qcloudSecretKey: 'pY8XmpkT0PdszudAjATD0iFbljXAex5S',
+    wxMessageToken: 'weixinmsgtoken',
+    networkTimeout: 30000,
     port: '5757',
     rootPathname: '',
 
