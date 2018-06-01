@@ -11,6 +11,7 @@ export default {
   // 这个字段走 app.json
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
+    // 配置tabBar里面的图标路径不需要加../
     pages: ['^pages/me/main'],
     window: {
       backgroundTextStyle: 'light',
@@ -23,20 +24,20 @@ export default {
       list: [{
         pagePath: 'pages/book/main',
         text: '图书',
-        iconPath: '',
-        selectedIconPath: ''
+        iconPath: 'static/book.png',
+        selectedIconPath: 'static/book-active.png'
       },
       {
         pagePath: 'pages/comments/main',
         text: '评论',
-        iconPath: '',
-        selectedIconPath: ''
+        iconPath: 'static/room.png',
+        selectedIconPath: 'static/room-active.png'
       },
       {
         pagePath: 'pages/me/main',
         text: '我的',
-        iconPath: '',
-        selectedIconPath: ''
+        iconPath: 'static/me.png',
+        selectedIconPath: 'static/me-active.png'
       }]
     }
   }
