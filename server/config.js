@@ -1,5 +1,5 @@
 const CONF = {
-    severHost: 'localhost',
+    serverHost: 'localhost',
     tunnelServerUrl: '',
     tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
     qcloudAppId: '1256828109',
@@ -11,10 +11,10 @@ const CONF = {
     rootPathname: '',
 
     // 微信小程序 App ID
-    appId: '',
+    appId: 'wx8bca6c12041dcd86',
 
     // 微信小程序 App Secret
-    appSecret: '',
+    appSecret: '0ce977bccb1ff8c7ed69e23fa147623e',
 
     // 是否使用腾讯云代理登录小程序
     useQcloudLogin: true,
