@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+import YearProgress from '@/components/yearprogress'
 import qcloud from 'wafer2-client-sdk'
 import {showSuccess, post} from '@/util' 
 import config from '@/config'
@@ -17,8 +18,8 @@ export default {
   data() {
     return {
       userinfo: {
-        avataUrl: '',
-        nickName: ''
+        avataUrl: '../../../static/unlogin.png',
+        nickName: '点击登录'
       }
     }
   },
@@ -34,7 +35,7 @@ export default {
     login () { 
       let user = wx.getStorageSync('userinfo') 
       const self = this 
-      if (!user) { 
+      if (!user) {
         qcloud.setLoginUrl(config.loginUrl) 
         qcloud.login({ 
           success: function (userinfo) {
@@ -56,6 +57,9 @@ export default {
   onShow () { 
     let userinfo = wx.getStorageSync('userinfo') // console.log([userinfo]) 
     if (userinfo) { this.userinfo = userinfo } // console.log(this.userinfo) 
+  },
+  components: {
+    YearProgress
   }
 }
 </script>
