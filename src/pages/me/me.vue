@@ -12,22 +12,30 @@
 <script>
 import YearProgress from '@/components/yearprogress'
 import qcloud from 'wafer2-client-sdk'
-import {showSuccess, post} from '@/util' 
+import {showSuccess, post, showModal} from '@/util' 
 import config from '@/config'
 export default {
   data() {
     return {
       userinfo: {
-        avataUrl: '../../../static/unlogin.png',
+        avatarUrl: '../../../static/unlogin.png',
         nickName: '点击登录'
       }
     }
   },
-  methods: { 
+  methods: {
+    async addBook(isbn) {
+      const res = await post('/weapp/addbook', {
+        isbn,
+        openid: this.userinfo.openId
+      })
+      showModal('添加成功', `${res.title}添加成功`)
+    },
     scanBook () { 
-      wx.scanCode({ success: (res) => { 
-        if(res.result){ 
-          console.log(res.result) 
+      wx.scanCode({ 
+        success: (res) => { 
+          if(res.result){ 
+           this.addBook(res.result)
           } 
         } 
       }) 
@@ -39,17 +47,21 @@ export default {
         qcloud.setLoginUrl(config.loginUrl) 
         qcloud.login({ 
           success: function (userinfo) {
-            qcloud.request({ 
+            qcloud.request({
+              // 获得用户信息接口openid要调用user接口
               url: config.userUrl, 
               login: true, 
               success (userRes) { 
-                showSuccess('登录成功') 
+                showSuccess('登录成功')
                 wx.setStorageSync('userinfo', userRes.data.data)
                 console.log(userRes.data.data) 
                 self.userinfo = userRes.data.data 
               } 
             }) 
-          } 
+          },
+          fail: function(err) {
+            console.log('登录失败')
+          }
         }) 
       } 
     } 

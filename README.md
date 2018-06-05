@@ -27,3 +27,12 @@ npm run build --report
 
 > 调用computed里面的方法可以不用带（）
 > 调用methods里面的方法一定要带（）
+
+### books数据入库时会失败"新增失败Incorrect string value: '\xE3\x80\x90\xE6\x97\xA5...' for column 'author' at row 1"
+> 出现这个错误的原因是，数据库的编码格式为latin1，而我们要插入的格式是utf8.
+
+``` bash
+# 修改数据库表编码格式
+alter table books convert to character set utf8;
+
+```
