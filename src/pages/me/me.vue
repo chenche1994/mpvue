@@ -30,6 +30,7 @@ export default {
         openid: this.userinfo.openId
       })
       showModal('添加成功', `${res.title}添加成功`)
+      console.log(this.userinfo)
     },
     scanBook () { 
       wx.scanCode({ 

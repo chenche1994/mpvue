@@ -12,7 +12,7 @@ export default {
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
     // 配置tabBar里面的图标路径不需要加../
-    pages: ['^pages/me/main'],
+    pages: ['^pages/book/main'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#Ea5149',
