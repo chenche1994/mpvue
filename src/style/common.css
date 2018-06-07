@@ -15,3 +15,7 @@
 .text-primary{
   color: #ea5a49
 }
+.text-footer{
+  text-align: center;
+  font-size: 12px;
+}

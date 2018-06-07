@@ -1,4 +1,5 @@
 <template>
+<a :href="detailUrl">
   <div class="book-card">
     <div class="thumb">
       <img :src="book.image" class="images" mode="aspectFit">
@@ -10,14 +11,15 @@
       </div>
       <div class="row">
         <div class="left">{{book.author}}</div>
-        <div class="right">浏览量:200</div>
+        <div class="right">浏览量{{book.count}}</div>
       </div>
       <div class="row">
         <div class="left">{{book.publisher}}</div>
-        <div class="right">添加人</div>
+        <div class="right">{{book.user_info.nickName}}</div>
       </div>
     </div>
   </div>
+</a>
 </template>
 <script>
 import Rate from './rate'
@@ -33,6 +35,11 @@ export default {
     //   const findRes = await mysql('books').select().where('openid',userid)
     //   console.log(findRes)
     // }
+  },
+  computed: {
+    detailUrl() {
+      return '/pages/detail/main?id=' + this.book.id
+    }
   },
   components: {
     Rate

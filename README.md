@@ -36,3 +36,8 @@ npm run build --report
 alter table books convert to character set utf8;
 
 ```
+
+### 获取小程序在 page onLoad 时候传递的 options
+```bash
+this.$root.$mp.query
+```
