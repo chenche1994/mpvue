@@ -1,12 +1,6 @@
 <template>
   <div>
-    <swiper indicator-dots="indicatorDots" autoplay="autoplay">
-      <block v-for="(url,index) in imgUrls" :key="index">
-        <swiper-item>
-          <image :src= url />
-        </swiper-item>
-      </block>
-    </swiper>
+    <TopSwiper :tops='tops'></TopSwiper>
     <Card v-for="book in books" :key="book.id" :book='book'></Card>
     <p class="text-footer" v-if="!more">没有更多数据了</p>
   </div>
@@ -14,18 +8,14 @@
 <script>
 import {get} from '@/util'
 import Card from '@/components/card'
+import TopSwiper from '@/components/topswiper'
 export default {
   data(){
     return {
       books: [],
       page: 0,// 当前是第几页
       more: true,
-      tops: [],
-      imgUrls: [
-        'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-        'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-      ],
+      tops: []
     }
   },
   methods: {
@@ -37,11 +27,11 @@ export default {
       }
       wx.showNavigationBarLoading()
       const books = await get('/weapp/booklist',{page: this.page})
-      this.books = books.list
+      // this.books = books.list
       if (books.list.length < 10 && this.page > 0) {
         this.more = false
       }
-      if (inint) {
+      if (init) {
         this.books = books.list
         wx.stopPullDownRefresh()
       } else {
@@ -72,7 +62,8 @@ export default {
     this.getTop()
   },
   components: {
-    Card
+    Card,
+    TopSwiper
   }
 }
 </script>

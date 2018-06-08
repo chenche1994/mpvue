@@ -1,7 +1,7 @@
 <template>
 <a :href="detailUrl">
   <div class="book-card">
-    <div class="thumb">
+    <div class="thumb" @click.stop='preview'>
       <img :src="book.image" class="images" mode="aspectFit">
     </div>
     <div class="detail">
@@ -30,11 +30,12 @@ export default {
     }
   },
   methods: {
-    // async getUploadUser() {
-    //   let userid = this.book.openid
-    //   const findRes = await mysql('books').select().where('openid',userid)
-    //   console.log(findRes)
-    // }
+    preview() {
+      wx.previewImage({
+        current: this.book.image,
+        urls: [this.book.image]
+      })
+    }
   },
   computed: {
     detailUrl() {
