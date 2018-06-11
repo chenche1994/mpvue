@@ -8,7 +8,7 @@
       </swiper-item>
     </div> -->
     <div v-for="(top,imgindex) in imgUrls" :key="imgindex">
-      <swiper-item>
+      <swiper-item class="swiper-item">
         <img class="sider-image" v-for="img in top" :key="img.id" :src= img.image :mode='aspectFit' @click="bookDetail(img)">
       </swiper-item>
     </div>
@@ -42,7 +42,10 @@ export default {
 <style scoped lang='sass'>
 .swiper
   margin-top: 5px
-  .sider-image 
-    width: 33%
-    height: 250rpx
+  .swiper-item
+    display: flex
+    justify-content: space-between
+    .sider-image 
+      width: 30%
+      height: 280rpx
 </style>

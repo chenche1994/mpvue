@@ -17,7 +17,7 @@ export default {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#Ea5149',
       navigationBarTitleText: '我的图书',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white'
     },
     tabBar: {
       selectedColor: '#ea5149',

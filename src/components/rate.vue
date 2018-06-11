@@ -22,7 +22,7 @@ export default {
 <style scoped lang="sass">
 .rate
   position: relative
-  display: inlne-block
+  display: inline-block
   .hollow
     position: absolute
     display: inline-block
@@ -30,5 +30,4 @@ export default {
     left: 0
     width: 0
     overflow: hidden
-
 </style>
