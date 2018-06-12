@@ -12,10 +12,10 @@
 <script>
 import YearProgress from '@/components/yearprogress'
 import qcloud from 'wafer2-client-sdk'
-import {showSuccess, post, showModal} from '@/util' 
+import {showSuccess, post, showModal} from '@/util'
 import config from '@/config'
 export default {
-  data() {
+  data () {
     return {
       userinfo: {
         avatarUrl: '../../../static/unlogin.png',
@@ -24,7 +24,7 @@ export default {
     }
   },
   methods: {
-    async addBook(isbn) {
+    async addBook (isbn) {
       const res = await post('/weapp/addbook', {
         isbn,
         openid: this.userinfo.openId
@@ -32,44 +32,44 @@ export default {
       showModal('添加成功', `${res.title}添加成功`)
       console.log(this.userinfo)
     },
-    scanBook () { 
-      wx.scanCode({ 
-        success: (res) => { 
-          if(res.result){ 
-           this.addBook(res.result)
-          } 
-        } 
-      }) 
-    }, 
-    login () { 
-      let user = wx.getStorageSync('userinfo') 
-      const self = this 
+    scanBook () {
+      wx.scanCode({
+        success: (res) => {
+          if (res.result) {
+            this.addBook(res.result)
+          }
+        }
+      })
+    },
+    login () {
+      let user = wx.getStorageSync('userinfo')
+      const self = this
       if (!user) {
-        qcloud.setLoginUrl(config.loginUrl) 
-        qcloud.login({ 
+        qcloud.setLoginUrl(config.loginUrl)
+        qcloud.login({
           success: function (userinfo) {
             qcloud.request({
               // 获得用户信息接口openid要调用user接口
-              url: config.userUrl, 
-              login: true, 
-              success (userRes) { 
+              url: config.userUrl,
+              login: true,
+              success (userRes) {
                 showSuccess('登录成功')
                 wx.setStorageSync('userinfo', userRes.data.data)
-                console.log(userRes.data.data) 
-                self.userinfo = userRes.data.data 
-              } 
-            }) 
+                console.log(userRes.data.data)
+                self.userinfo = userRes.data.data
+              }
+            })
           },
-          fail: function(err) {
+          fail: function () {
             console.log('登录失败')
           }
-        }) 
-      } 
-    } 
-  }, 
-  onShow () { 
-    let userinfo = wx.getStorageSync('userinfo') // console.log([userinfo]) 
-    if (userinfo) { this.userinfo = userinfo } // console.log(this.userinfo) 
+        })
+      }
+    }
+  },
+  onShow () {
+    let userinfo = wx.getStorageSync('userinfo') // console.log([userinfo])
+    if (userinfo) { this.userinfo = userinfo } // console.log(this.userinfo)
   },
   components: {
     YearProgress

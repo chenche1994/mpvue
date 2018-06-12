@@ -8,13 +8,13 @@
 export default {
   props: {
     rate: {
-      type: [Number,String],
+      type: [Number, String],
       default: 0
     }
   },
   computed: {
-    style() {
-      return `width:${this.rate/2}em`
+    style () {
+      return `width:${this.rate / 2}em`
     }
   }
 }

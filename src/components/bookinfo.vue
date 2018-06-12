@@ -27,13 +27,13 @@
 <script>
 import Rate from '@/components/rate'
 export default {
-  props:{
+  props: {
     info: {
       type: Object
     }
   },
   computed: {
-    userinfo() {
+    userinfo () {
       return this.info.user_info || {}
     }
   },

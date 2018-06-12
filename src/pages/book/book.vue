@@ -10,23 +10,23 @@ import {get} from '@/util'
 import Card from '@/components/card'
 import TopSwiper from '@/components/topswiper'
 export default {
-  data(){
+  data () {
     return {
       books: [],
-      page: 0,// 当前是第几页
+      page: 0, // 当前是第几页
       more: true,
       tops: []
     }
   },
   methods: {
     // 下拉刷新或者刚加载时都是加载第一页
-    async getList(init) {
+    async getList (init) {
       if (init) {
         this.more = true
         this.page = 0
       }
       wx.showNavigationBarLoading()
-      const books = await get('/weapp/booklist',{page: this.page})
+      const books = await get('/weapp/booklist', {page: this.page})
       // this.books = books.list
       if (books.list.length < 10 && this.page > 0) {
         this.more = false
@@ -39,25 +39,25 @@ export default {
       }
       wx.hideNavigationBarLoading()
     },
-    async getTop() {
+    async getTop () {
       const tops = await get('/weapp/top')
       this.tops = tops.list
     }
   },
   // 下拉刷新
-  onPullDownRefresh() {
+  onPullDownRefresh () {
     this.getList(true)
     this.getTop()
   },
   // 触底上拉刷新
-  onReachBottom() {
+  onReachBottom () {
     if (!this.more) {
       return false
     }
     this.page = this.page + 1
     this.getList()
   },
-  mounted() {
+  mounted () {
     this.getList(true)
     this.getTop()
   },

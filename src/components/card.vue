@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    preview() {
+    preview () {
       wx.previewImage({
         current: this.book.image,
         urls: [this.book.image]
@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    detailUrl() {
+    detailUrl () {
       return '/pages/detail/main?id=' + this.book.id
     }
   },
