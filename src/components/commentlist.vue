@@ -1,7 +1,7 @@
 <template>
   <div class="commentlist">
     <div class="page-title" v-if="comments.length">我的评论</div>
-    <div class="comment" v-for="comment in comments" :key="comment.id">
+    <div class="comment" v-for="comment in comments" :key="comment.id" @click="handleClick(comment)">
       <div class="userimg">
         <img :src="comment.user_info.image" class="avatar" mode='aspectFit'>
       </div>
@@ -20,6 +20,19 @@ export default {
   props: {
     comments: {
       type: Object
+    },
+    type: {
+      type:''
+    }
+  },
+  methods: {
+    // 页面跳转
+    handleClick(item){
+      if(this.type === 'user') {
+        wx.navigateTo({
+          url:'/pages/detail/main?id=' + item.bookid
+        })
+      }
     }
   }
 }
