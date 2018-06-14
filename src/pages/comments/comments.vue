@@ -13,11 +13,11 @@ import CommentList from '@/components/commentlist'
 import Card from '@/components/card'
 import {get} from '@/util'
 export default{
-  data() {
+  data () {
     return {
       comments: [],
-      userinfo:{},
-      books:[]
+      userinfo: {},
+      books: []
     }
   },
   components: {
@@ -25,30 +25,30 @@ export default{
     Card
   },
   methods: {
-    init(){
+    init () {
       wx.showNavigationBarLoading()
       this.getComments()
       this.getBooks()
       wx.hideNavigationBarLoading()
     },
-    async getComments() {
-      const comments =await get('/weapp/commentlist',{
+    async getComments () {
+      const comments = await get('/weapp/commentlist', {
         openid: this.userinfo.openId
       })
       this.comments = comments.list
     },
-    async getBooks() {
-      const books = await get('/weapp/booklist',{
+    async getBooks () {
+      const books = await get('/weapp/booklist', {
         openid: this.userinfo.openId
       })
       this.books = books.list
     }
   },
-  onPullDownRefresh() {
+  onPullDownRefresh () {
     this.init()
     wx.stopPullDownRefresh()
   },
-  onShow(){
+  onShow () {
     if (!this.userinfo.openid) {
       let userinfo = wx.getStorageSync('userinfo')
       if (userinfo) {

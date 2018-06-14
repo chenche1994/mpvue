@@ -22,15 +22,15 @@ export default {
       type: Object
     },
     type: {
-      type:''
+      type: ''
     }
   },
   methods: {
     // 页面跳转
-    handleClick(item){
-      if(this.type === 'user') {
+    handleClick (item) {
+      if (this.type === 'user') {
         wx.navigateTo({
-          url:'/pages/detail/main?id=' + item.bookid
+          url: '/pages/detail/main?id=' + item.bookid
         })
       }
     }

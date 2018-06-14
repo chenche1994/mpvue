@@ -8,11 +8,11 @@ module.exports = async (ctx) => {
         .join('cSessionInfo', 'books.openid', 'cSessionInfo.open_id')// 设置和哪个表连，后面的参数是限制的条件:books.openid = cSessionInfo.open_id
         .orderBy('books.id', 'desc')// 按照book的id从后到前排序
     let books
-    if(openid){
-        books =await mysqlSelect.where('books.openid', openid)
-    } else{
+    if (openid) {
+        books = await mysqlSelect.where('books.openid', openid)
+    } else {
         books = await mysqlSelect.limit(size).offset(Number(page) * size)// limit设置每次查询的数量
-                                 // offset查询的起点
+        // offset查询的起点
     }
     ctx.state.data = {
         list: books.map(v => {
